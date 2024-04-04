@@ -9,11 +9,19 @@ const count = ref(0);
 
 <template>
   <h1>{{ count }}</h1>
-  <Button variant="destructive" @click="count++">Click</Button>
+  <Button @click="count++" class="button"
+    ><span> {{ msg }} </span>
+  </Button>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .read-the-docs {
   color: #888;
+}
+
+.button {
+  span {
+    color: red;
+  }
 }
 </style>
