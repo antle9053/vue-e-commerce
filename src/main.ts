@@ -1,4 +1,4 @@
-import { createApp } from "vue";
+import { createApp, provide, h } from "vue";
 import App from "./App.vue";
 import "@/shared/styles/_main.scss";
 
@@ -8,13 +8,21 @@ import "vuetify/styles";
 import { createVuetify } from "vuetify";
 import * as components from "vuetify/components";
 import * as directives from "vuetify/directives";
+import { DefaultApolloClient } from "@vue/apollo-composable";
+import { apolloClient } from "./shared/libs/apollo";
 
 const vuetify = createVuetify({
   components,
   directives,
 });
 
-const app = createApp(App);
+const app = createApp({
+  setup() {
+    provide(DefaultApolloClient, apolloClient);
+  },
+
+  render: () => h(App),
+});
 const pinia = createPinia();
 
 app.use(pinia);
